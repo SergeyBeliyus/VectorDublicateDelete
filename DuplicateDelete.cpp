@@ -2,11 +2,19 @@
 #include <vector>
 #include <algorithm>
 
+void dublicate_delete(std::vector<int> &v) {
+	std::vector<int>::iterator it;
+
+	std::sort(v.begin(), v.end(), [](int i, int j) { return i < j; });
+	it = std::unique(v.begin(), v.end());
+	v.resize(std::distance(v.begin(), it));
+}
+
 
 int main() {
 	int count;
 	std::vector<int> data {1,1,2,5,6,1,2,4};
-	std::vector<int>::iterator it;
+
 
 	std::cout << "[IN]: ";
 	for (int i : data) {
@@ -15,9 +23,7 @@ int main() {
 
 	std::cout << std::endl;
 
-	std::sort(data.begin(), data.end(), [](int i, int j) { return i < j;});
-	it = std::unique(data.begin(), data.end());
-	data.resize(std::distance(data.begin(), it));
+	dublicate_delete(data);
 
 	std::cout << "[OUT]: ";
 	for (int i : data) {
